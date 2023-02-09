@@ -1,0 +1,159 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="form-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <!--Icons Library-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!--Animations Library-->
+
+    <title>Document</title>
+  </head>
+
+      <!--Form 1 Section-->
+
+      <div id="mid-form">
+        <div id="forms">
+          <div id="mids-first">
+            <button>اضغط هنا لتعرف كيف تعمل المنصة</button>
+            <h3>طلب عرض السعر</h3>
+            <h2>خرسانة جاهزة</h2>
+          </div>
+
+          <div id="buttons">
+            <button>
+              <p>1</p>
+              معلومات المنتج
+            </button>
+            <button>
+              <p>2</p>
+              المشروع
+            </button>
+            <button>
+              <p>3</p>
+              ازاي نوصلك
+            </button>
+          </div>
+
+          <div id="gray">
+            <p>اسم المنتج المطلوب</p>
+            <input type="text" />
+            <p>الكمية</p>
+            <p id="matloba" style="color: rgb(220, 0, 0); font-size: 12px">
+              هذه الخانة مطلوبة
+            </p>
+            <input
+              id="kemeya"
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="10"
+              step="0.5"
+              placeholder="ادخل الكمية"
+            />
+            <p>الوحدة</p>
+            <input type="text" name="" id="" placeholder="م3" disabled />
+            <p>تفاصيل أخري خاصة بالطلب</p>
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="تفاصيل أخرى مثل المواصفات والمقاسات والاعتمادات المطلوبة"
+            ></textarea>
+            <p>نوع العنصر</p>
+            <select>
+              <option>أسقف</option>
+              <option>أعمدة</option>
+              <option>لبشة مسلحة</option>
+              <option>لبشة عادية</option>
+            </select>
+            <p>المحتوى الأسمنتى كجم/م3</p>
+            <select>
+              <option>350</option>
+              <option>400</option>
+              <option>450</option>
+              <option>500</option>
+            </select>
+            <p>الإجهاد المطلوب كجم/سم2</p>
+            <select>
+              <option>250</option>
+              <option>300</option>
+              <option>350</option>
+              <option>400</option>
+            </select>
+            <p>نوع الأسمنت</p>
+            <select>
+              <option>عادي</option>
+              <option>مقاوم</option>
+            </select>
+            <p>طول ذراع المضخة بالمتر</p>
+            <select>
+              <option>36</option>
+              <option>42</option>
+              <option>47</option>
+              <option>49</option>
+              <option>52</option>
+            </select>
+          </div>
+
+          <div id="two-buttons">
+            <button id="back">السابق</button>
+            <button type="submit" id="next">التالي</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    </div>
+
+    <script src="script.js"></script>
+    <!--Link to script-->
+
+    <script type="module">
+      //sending form data to firebase
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.0/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        push,
+        child,
+        onValue,
+        get,
+      } from "https://www.gstatic.com/firebasejs/9.17.0/firebase-database.js";
+
+      var firebaseConfig = {
+        apiKey: "AIzaSyDJD2Dqe8JuEpklkf02N25qxBLE4V-zvtE",
+
+        authDomain: "elmawkaa-74a19.firebaseapp.com",
+
+        projectId: "elmawkaa-74a19",
+
+        storageBucket: "elmawkaa-74a19.appspot.com",
+
+        messagingSenderId: "634318218872",
+
+        appId: "1:634318218872:web:15db1d3645038c4988ef8d",
+      };
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      next.addEventListener("click", (eo) => {
+        var kemeya = document.getElementById("kemeya").value;
+
+        const userId = push(child(ref(database), "user")).key;
+        set(ref(database, "users/" + userId), {
+          kemeya: kemeya,
+        });
+      });
+    </script>
+  </body>
+</html>
